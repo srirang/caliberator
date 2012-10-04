@@ -1,0 +1,29 @@
+<h1>Listing data</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Uncompressed size</th>
+    <th>Format</th>
+    <th>Book</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @data.each do |datum| %>
+  <tr>
+    <td><%= datum.name %></td>
+    <td><%= datum.uncompressed_size %></td>
+    <td><%= datum.format %></td>
+    <td><%= datum.book %></td>
+    <td><%= link_to 'Show', datum %></td>
+    <td><%= link_to 'Edit', edit_datum_path(datum) %></td>
+    <td><%= link_to 'Destroy', datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Datum', new_datum_path %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @datum.name %>
+</p>
+
+<p>
+  <b>Uncompressed size:</b>
+  <%= @datum.uncompressed_size %>
+</p>
+
+<p>
+  <b>Format:</b>
+  <%= @datum.format %>
+</p>
+
+<p>
+  <b>Book:</b>
+  <%= @datum.book %>
+</p>
+
+
+<%= link_to 'Edit', edit_datum_path(@datum) %> |
+<%= link_to 'Back', data_path %>

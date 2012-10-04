@@ -1,0 +1,86 @@
+<%= form_for @book, :html => { :class => 'form-horizontal' } do |f| %>
+  <div class="control-group">
+    <%= f.label :title, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :title, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :sort, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :sort, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :timestamp, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :timestamp, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :pubdate, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :pubdate, :class => 'datetime_select' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :series_index, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :series_index, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :author_sort, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :author_sort, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :isbn, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :isbn, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :lccn, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :lccn, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :path, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :path, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :flags, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.number_field :flags, :class => 'number_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :uuid, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_area :uuid, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :has_cover, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :has_cover, :class => 'text_field' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :last_modified, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.datetime_select :last_modified, :class => 'datetime_select' %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                books_path, :class => 'btn' %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  sort: MyString
+  timestamp: 2012-10-04 15:16:33
+  pubdate: 2012-10-04 15:16:33
+  series_index: 9.99
+  author_sort: MyString
+  isbn: MyString
+  lccn: MyString
+  path: MyString
+  flags: 1
+  uuid: MyString
+  has_cover: false
+  last_modified: 2012-10-04 15:16:33
+
+two:
+  title: MyString
+  sort: MyString
+  timestamp: 2012-10-04 15:16:33
+  pubdate: 2012-10-04 15:16:33
+  series_index: 9.99
+  author_sort: MyString
+  isbn: MyString
+  lccn: MyString
+  path: MyString
+  flags: 1
+  uuid: MyString
+  has_cover: false
+  last_modified: 2012-10-04 15:16:33

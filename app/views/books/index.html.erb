@@ -1,0 +1,94 @@
+<%- model_class = Book -%>
+<table class="table table-striped">
+  <!--
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:sort) %></th>
+      <th><%= model_class.human_attribute_name(:timestamp) %></th>
+      <th><%= model_class.human_attribute_name(:pubdate) %></th>
+      <th><%= model_class.human_attribute_name(:series_index) %></th>
+      <th><%= model_class.human_attribute_name(:author_sort) %></th>
+      <th><%= model_class.human_attribute_name(:isbn) %></th>
+      <th><%= model_class.human_attribute_name(:lccn) %></th>
+      <th><%= model_class.human_attribute_name(:path) %></th>
+      <th><%= model_class.human_attribute_name(:flags) %></th>
+      <th><%= model_class.human_attribute_name(:uuid) %></th>
+      <th><%= model_class.human_attribute_name(:has_cover) %></th>
+      <th><%= model_class.human_attribute_name(:last_modified) %></th>
+
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td><%= link_to book.id, book_path(book) %></td>
+        <td><%= book.title %></td>
+        <td><%= book.sort %></td>
+        <td><%= book.timestamp %></td>
+        <td><%= book.pubdate %></td>
+        <td><%= book.series_index %></td>
+        <td><%= book.author_sort %></td>
+        <td><%= book.isbn %></td>
+        <td><%= book.lccn %></td>
+        <td><%= book.path %></td>
+        <td><%= book.flags %></td>
+        <td><%= book.uuid %></td>
+        <td><%= book.has_cover %></td>
+        <td><%= book.last_modified %></td>
+        
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_book_path(book), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      book_path(book),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  -->
+
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Author(s)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+      <tr>
+        <td>
+          <% if book.has_cover %>
+            <%= link_to image_tag(book.get_thumbnail, :width => 120), book_path(book) %>
+          <% end %>
+        </td>
+        <!-- <td><%= book.get_title %></td> -->
+        <td width="200">
+          <% book.authors.each do |author| %>
+            <%= link_to author.name, author_path(author) %>, 
+          <% end %>
+        </td>
+        <td>
+          <p>
+            <h4><%= book.get_title %><br></h4>
+            <%= truncate(book.get_summary, :length => 300, :separator => ' ') %>
+          </p
+>          <%= link_to 'Download',
+                      download_book_path(book),
+                      :method => :get,
+                      :class => 'btn btn-mini btn-success' %>
+        </td>
+      <tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_book_path,
+            :class => 'btn btn-primary' %>

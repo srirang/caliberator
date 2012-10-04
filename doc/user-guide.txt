@@ -1,0 +1,2 @@
+1. Copy metadata.db file from "Calibre Library" to "caliberator/db"
+2. Copy "Calibre Library" (which contains your book collection) to "caliberator/Calibre Library"
