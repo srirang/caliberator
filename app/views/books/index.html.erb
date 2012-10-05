@@ -2,7 +2,7 @@
 <% if @books.size <= 0 %>
   <h3>Couldn't find what you are looking for.<h3>Maybe try a different search.
 <% else %>
-  <p>Found <%= @books.size %> books</p>
+  <div class="well well-small">Found <%= @books.size %> books</div>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -14,8 +14,10 @@
       <% @books.each do |book| %>
         <tr>
           <td>
-            <% if book.has_cover %>
+            <% if book.is_has_cover %>
               <%= link_to image_tag(book.get_thumbnail, :width => 120), book_path(book) %>
+              <% else %>
+                <%= link_to image_tag('no_icon.gif', :width => 50), book_path(book) %>
             <% end %>
           </td>
           <td>

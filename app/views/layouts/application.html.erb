@@ -33,10 +33,6 @@
         <%= text_field_tag :search, params[:search], :class => "span2" %>
         <%= submit_tag "Search", :name => nil, :class => 'btn' %> 
       <% end %>
-      <!-- <form class="navbar-form pull-left">
-        <input type="text" class="span2">
-        <button type="submit" class="btn">Submit</button>
-      </form> -->
     </div>
   </div>
 </div>
@@ -45,16 +41,54 @@
 <div class="container-fluid">
   <div class="row-fluid">
 <!--
+    <div class="span12"><%= yield %></div>
+-->
     <div class="span2">
       <ul class="nav nav-list">
-        <li class="nav-header">Browse All</li>
-        <li>Books</li>
-        <li>Authors</li>
-        <li>Tags</li>
+        <li class="nav-header">Recently Added...</li>
       </ul>
-    </div>
--->
-    <div class="span12"><%= yield %></div>
+
+      <table class="table table-striped">
+        <thead>
+          <th width="50" />
+          <th />
+        </thead>
+        <tbody>
+          <% @recent_books.each do |book| %>
+            <tr>
+              <td>
+                <% if book.is_has_cover %>
+                  <%= link_to image_tag(book.get_thumbnail, :width => 50), book_path(book) %>
+                <% else %>
+                  <%= link_to image_tag('no_icon.gif', :width => 50), book_path(book) %>
+                <% end %>
+              </td>
+              <td>
+                <p>
+                  <h9><%= book.get_title %></h9>
+                  by
+                  <small>
+                    <% book.authors.each do |author| %>
+                      <%= link_to author.name, author_path(author) %>&nbsp;|&nbsp;
+                    <% end %>
+                  </small>
+                  <%= link_to 'Download', download_book_path(book), :method => :get, :class => 'btn btn-mini btn-success' %><br />
+                </p>
+              </td>
+            <tr>
+          <% end %>
+        </tbody>
+      </table>
+<!-- 
+      <% @recent_books.each do |book| %>
+        <% if book.has_cover %>
+          <%= link_to image_tag(book.get_thumbnail, :width => 50), book_path(book) %>
+        <% end %><br>
+        <small><%= truncate(book.get_title) %> by <%= book.get_author_names %></small>
+        <%= button_to 'Download', download_book_path(book), :method => 'get', :class => 'btn btn-success btn-mini' %>
+      <% end %>
+ -->    </div>
+    <div class="span9"><%= yield %></div>
   </div>
 </div>
 

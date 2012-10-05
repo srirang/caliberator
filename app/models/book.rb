@@ -26,12 +26,6 @@ class Book < ActiveRecord::Base
     return "#{datum[0].format}"
   end
 
-  def get_image_name
-    if has_cover?
-      return "cover.jpg"
-    end
-  end
-
   def get_summary
     if (comment == nil)
       ""
@@ -54,10 +48,14 @@ class Book < ActiveRecord::Base
   end
 
   def get_thumbnail
-    if has_cover
-      "#{@@image_basepath}/#{path}/cover.jpg"
+    "#{@@image_basepath}/#{path}/cover.jpg"
+  end
+
+  def is_has_cover
+    if has_cover == 1 
+      true
     else
-      ""
+      false
     end
   end
 
