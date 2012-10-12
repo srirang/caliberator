@@ -6,8 +6,7 @@ class BooksController < ApplicationController
     puts "Search request: #{params[:search]}"
 
     if params[:search] != nil
-      # @books = Book.find(:all, :conditions => {:title => "%#{params[:search]}%"})
-      @books = Book.where("title LIKE '%#{params[:search]}%'")
+      @books = Book.where("title LIKE '%#{params[:search]}%' OR author_sort LIKE '%#{params[:search]}%'")
     else
       @books = Book.all
     end

@@ -2,7 +2,10 @@
 <% if @books.size <= 0 %>
   <h3>Couldn't find what you are looking for.<h3>Maybe try a different search.
 <% else %>
-  <div class="well well-small">Found <%= @books.size %> books</div>
+  <div class="well well-small">
+    <p>Found <%= @books.size %> books</p>
+    <p>Showing all matches for "<%= params[:search] %>"</p>
+  </div>
   <table class="table table-striped">
     <thead>
       <tr>
