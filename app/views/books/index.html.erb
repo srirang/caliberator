@@ -30,6 +30,14 @@
               <% book.authors.each do |author| %>
                 <%= link_to author.name, author_path(author) %>&nbsp;|&nbsp;
               <% end %>
+              Tags: 
+              <% if book.is_has_tags %>
+                <% book.tags.each do |tag| %>
+                  <%= link_to tag.name, tag_path(tag) %>&nbsp;|&nbsp;
+                <% end %>
+              <% else %>
+                None
+              <% end %>
               <%= link_to 'Download', download_book_path(book), :method => :get, :class => 'btn btn-mini btn-success' %><br />
             </p>
 

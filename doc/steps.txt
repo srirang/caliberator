@@ -1,5 +1,9 @@
-./script/rails generate scaffold Book title:string sort:string timestamp:timestamp pubdate:timestamp series_index:decimal author_sort:string isbn:string lccn:string path:string flags:integer uuid:string has_cover:boolean last_modified:timestamp
+./script/rails generate scaffold Book title:string sort:string timestamp:timestamp pubdate:timestamp series_index:decimal author_sort:string isbn:string lccn:string path:string flags:integer uuid:string has_cover:boolean last_modified:timestamp --skip-stylesheets
+
 ./script/rails generate scaffold Author name:text link:text sort:text
+
 ./script/rails generate scaffold Data name:text uncompressed_size:text format:text book:integer
+
 ./script/rails generate scaffold Comment text:text book:integer
 
+./script/rails generate scaffold Tag name:text

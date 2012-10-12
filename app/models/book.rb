@@ -2,6 +2,7 @@ class Book < ActiveRecord::Base
   has_many :datum, :foreign_key => "book"
   has_one :comment, :foreign_key => "book"
   has_and_belongs_to_many :authors, :join_table => "books_authors_link", :foreign_key => "book", :association_foreign_key => "author"
+  has_and_belongs_to_many :tags, :join_table => "books_tags_link", :foreign_key => "book", :association_foreign_key => "tag"
 
   @@library_basepath = "#{Rails.root}/public/Calibre Library"
   @@image_basepath = "/Calibre Library"
@@ -53,6 +54,14 @@ class Book < ActiveRecord::Base
 
   def is_has_cover
     if has_cover == 1 
+      true
+    else
+      false
+    end
+  end
+
+  def is_has_tags
+    if tags.size > 0
       true
     else
       false
