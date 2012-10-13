@@ -61,7 +61,7 @@ class Book < ActiveRecord::Base
   end
 
   def is_has_tags
-    if (tags != nil && tags.size > 0)
+    if tags.size > 0
       true
     else
       false
