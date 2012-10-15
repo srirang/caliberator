@@ -41,7 +41,9 @@
               <% else %>
                 None
               <% end %>
-              <%= link_to 'Download', download_book_path(book), :method => :get, :class => 'btn btn-mini btn-success' %><br />
+              <% book.datum.each do |data| %>
+                <%= link_to 'Get '+data.format, download_book_path(book, :data => data.id), :method => :get, :class => 'btn btn-mini btn-success' %><br />
+              <% end %>
             </p>
 
             <%= truncate(book.get_summary, :length => 300, :separator => ' ') %>
