@@ -6,9 +6,9 @@ class BooksController < ApplicationController
     puts "Search request: #{params[:search]}"
 
     if params[:search] != nil
-      @books = Book.where("title LIKE '%#{params[:search]}%' OR author_sort LIKE '%#{params[:search]}%'")
+      @books = Book.where("title LIKE '%#{params[:search]}%' OR author_sort LIKE '%#{params[:search]}%'").page(params[:page]).per(25)
     else
-      @books = Book.all
+      @books = Book.page(params[:page]).per(25)
     end
     @recent_books = Book.find(:all, :order => "timestamp asc", :limit => 5)
 
