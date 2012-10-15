@@ -7,8 +7,8 @@ class Book < ActiveRecord::Base
   @@library_basepath = "#{Rails.root}/public/Calibre Library"
   @@image_basepath = "/Calibre Library"
 
-  def get_filepath
-    return "#{get_filedirectory}/#{get_filename}"
+  def get_filepath (data_id)
+    return "#{get_filedirectory}/#{get_filename(data_id)}"
   end
 
   def get_filedirectory
@@ -19,12 +19,12 @@ class Book < ActiveRecord::Base
     return @@library_basepath
   end
 
-  def get_filename
-    return "#{datum[0].name}.#{get_extension.downcase}"
+  def get_filename (data_id)
+    return "#{datum[data_id].name}.#{get_extension(data_id).downcase}"
   end
 
-  def get_extension
-    return "#{datum[0].format}"
+  def get_extension (data_id)
+    return "#{datum[data_id].format}"
   end
 
   def get_summary

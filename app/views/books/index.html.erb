@@ -27,25 +27,17 @@
             <% end %>
           </td>
           <td>
-            <p>
-              <h4><%= book.get_title %></h4>
+            <h4><%= book.get_title %></h4>
+            <p class="muted">
               by
-              <% book.authors.each do |author| %>
-                <%= link_to author.name, author_path(author) %>&nbsp;|&nbsp;
-              <% end %>
+              <%= book.authors.collect{|author| author.name}.to_sentence %>
               Tags: 
-              <% if book.is_has_tags %>
-                <% book.tags.each do |tag| %>
-                  <%= link_to tag.name, tag_path(tag) %>&nbsp;|&nbsp;
-                <% end %>
-              <% else %>
-                None
-              <% end %>
-              <% book.datum.each do |data| %>
-                <%= link_to 'Get '+data.format, download_book_path(book, :data => data.id), :method => :get, :class => 'btn btn-mini btn-success' %><br />
-              <% end %>
+              <%= book.tags.collect{|tag| tag.name}.to_sentence %>
             </p>
-
+            <% data_id = 0 %>
+            <% book.datum.each_with_index do |data, data_id| %>
+              <%= link_to 'Get '+data.format, download_book_path(book, :data_id => data_id), :method => :get, :class => 'btn btn-mini btn-success' %>
+            <% end %>
             <%= truncate(book.get_summary, :length => 300, :separator => ' ') %>
           </td>
         <tr>

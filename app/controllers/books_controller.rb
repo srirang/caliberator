@@ -11,6 +11,7 @@ class BooksController < ApplicationController
       @books = Book.page(params[:page]).per(25)
     end
     @recent_books = Book.find(:all, :order => "timestamp asc", :limit => 5)
+    @books_to_read = Book.find(:all, :include=>:tags, :conditions => ['tags.name in (?)',['to-read']])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -32,7 +33,8 @@ class BooksController < ApplicationController
 
   def download
     @book = Book.find(params[:id])
-    return send_file @book.get_filepath, :type => 'application/pdf', :filename => @book.get_filename
+    data_id = Integer(params[:data_id])
+    return send_file @book.get_filepath(data_id), :type => 'application/pdf', :filename => @book.get_filename(data_id)
   end
 
   # # GET /books/new
