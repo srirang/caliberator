@@ -34,7 +34,7 @@ class BooksController < ApplicationController
   def download
     @book = Book.find(params[:id])
     data_id = Integer(params[:data_id])
-    return send_file @book.get_filepath(data_id), :type => 'application/pdf', :filename => @book.get_filename(data_id)
+    return send_file @book.get_filepath(data_id), :type => @book.get_mime_type(data_id), :filename => @book.get_filename(data_id)
   end
 
   # # GET /books/new

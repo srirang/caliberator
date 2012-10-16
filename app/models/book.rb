@@ -68,4 +68,7 @@ class Book < ActiveRecord::Base
     end
   end
 
+  def get_mime_type (data_id)
+    return datum[data_id].get_mime_type
+  end
 end
