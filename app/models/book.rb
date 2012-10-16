@@ -44,10 +44,6 @@ class Book < ActiveRecord::Base
     author_sort.titleize
   end
 
-  def get_author_names
-    author_names = authors.collect{|author| author.name}
-  end
-
   def get_thumbnail
     "#{@@image_basepath}/#{path}/cover.jpg"
   end

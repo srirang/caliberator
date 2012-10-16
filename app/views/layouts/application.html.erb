@@ -52,72 +52,12 @@
           </thead>
           <tbody>
             <% @books_to_read.each do |book| %>
-              <tr>
-                <td>
-                  <% if book.is_has_cover %>
-                    <%= link_to image_tag(book.get_thumbnail, :width => 50), book_path(book) %>
-                  <% else %>
-                    <%= link_to image_tag('no_icon.gif', :width => 50), book_path(book) %>
-                  <% end %>
-                </td>
-                <td>
-                  <h9><%= book.get_title %></h9>
-                  <p class="muted">
-                    by
-                    <%= book.authors.collect{|author| author.name}.to_sentence %>
-                    <% data_id = 0 %>
-                    <% book.datum.each_with_index do |data, data_id| %>
-                      <%= link_to 'Get '+data.format, download_book_path(book, :data_id => data_id), :method => :get, :class => 'btn btn-mini btn-success' %>
-                    <% end %>
-                  </p>
-                </td>
-              <tr>
+              <%= render 'book_concise', :book => book %>
             <% end %>
           </tbody>
         </table>
       </div>
     <% end %>
-
-
-
-
-<!--     <%if @recent_books != nil and @recent_books.size > 0 %>
-      <div class="span2">
-        <ul class="nav nav-list">
-          <li class="nav-header">Added Recently...</li>
-        </ul>
-        <table class="table table-striped">
-          <thead>
-            <th width="50" />
-            <th />
-          </thead>
-          <tbody>
-            <% @recent_books.each do |book| %>
-              <tr>
-                <td>
-                  <% if book.is_has_cover %>
-                    <%= link_to image_tag(book.get_thumbnail, :width => 50), book_path(book) %>
-                  <% else %>
-                    <%= link_to image_tag('no_icon.gif', :width => 50), book_path(book) %>
-                  <% end %>
-                </td>
-                <td>
-                  <p class="muted">
-                    by
-                    <%= book.authors.collect{|author| author.name}.to_sentence %>
-                    <% data_id = 0 %>
-                    <% book.datum.each_with_index do |data, data_id| %>
-                      <%= link_to 'Get '+data.format, download_book_path(book, :data_id => data_id), :method => :get, :class => 'btn btn-mini btn-success' %>
-                    <% end %>
-                  </p>
-                </td>
-              <tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    <% end %>
- -->
     <div class="span9"><%= yield %></div>
   </div>
 </div>

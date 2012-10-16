@@ -2,12 +2,6 @@
 <% if @books.size <= 0 %>
   <h3>Couldn't find what you are looking for.<h3>Maybe try a different search.
 <% else %>
-  <!-- 
-  <div class="well well-small">
-    <p>Found <%= @books.size %> books</p>
-    <p>Showing all matches for "<%= params[:search] %>"</p>
-  </div>
-  -->
   <%= paginate @books %>
   <table class="table table-striped">
     <thead>
@@ -18,29 +12,7 @@
     </thead>
     <tbody>
       <% @books.each do |book| %>
-        <tr>
-          <td>
-            <% if book.is_has_cover %>
-              <%= link_to image_tag(book.get_thumbnail, :width => 120), book_path(book) %>
-              <% else %>
-                <%= link_to image_tag('no_icon.gif', :width => 50), book_path(book) %>
-            <% end %>
-          </td>
-          <td>
-            <h4><%= book.get_title %></h4>
-            <p class="muted">
-              by
-              <%= book.authors.collect{|author| author.name}.to_sentence %>
-              Tags: 
-              <%= book.tags.collect{|tag| tag.name}.to_sentence %>
-            </p>
-            <% data_id = 0 %>
-            <% book.datum.each_with_index do |data, data_id| %>
-              <%= link_to 'Get '+data.format, download_book_path(book, :data_id => data_id), :method => :get, :class => 'btn btn-mini btn-success' %>
-            <% end %>
-            <%= truncate(book.get_summary, :length => 300, :separator => ' ') %>
-          </td>
-        <tr>
+        <%= render 'book', :book => book %>
       <% end %>
     </tbody>
   </table>
